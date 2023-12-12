@@ -6,7 +6,7 @@ def extended_euclidean_algorithm(a, b):
         gcd, x, y = extended_euclidean_algorithm(b, a % b)
         return gcd, y, x - (a // b) * y
 
-
+#changes
 # Example usage:
 num1 = int(input("Enter the first number: "))
 num2 = int(input("Enter the second number: "))

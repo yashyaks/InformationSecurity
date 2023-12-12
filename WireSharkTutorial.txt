@@ -1,0 +1,29 @@
+Wireshark Tutorial
+
+1. Do nslookup to find Addresses of a http website
+   eg. nslookup www.testingmcafeesites.com (on a http website)
+2. Note the addresses 
+
+3. Start the Wireshark App
+4. On the home page ensure you have selected wifi/lan for analysing packets from
+      Note: if no packets were found or expected packets dont show up, it maybe due to selecting the wrong network for analysing, once you start recording the title of the window, shows the name of the network being analysed, ensure that it is wifi
+5. Start capturing packets on Wireshark with the sharkfin button on top left 
+6. Search the http webiste that you had pinged earlier on a browser
+7. Once the search is complete and the website has entirely loaded, stop capturing packets on Wireshark, with the red square button
+8. In the search bar on Wireshark(where you can type in displayfilters), type
+      ip.addr == <addresses value>
+   Note: if no data shows up with the first address value, check with the alternate values available, in the addresses field in nslookup
+   if nothing works, do nslookup again i.e. after you have completed capturing the packages to get the latest addresses, and search for those values
+9. After Searching below are the list of things to look at:
+   1. plain HTML showing up
+   2. TLS mai port 443
+   3. Client Hello
+   4. Server Hello
+   5. Handshake in sever hello ke tls ka option
+   6. cipher suites in client hello
+   7. cipher suites proposed by the client in client hello
+   8. cipher cuites in server hello
+   9. http req in hello proceeds with port no. 80
+   10. https req in hello proceeds with port no. 443
+   11. https req goes with TLS
+
