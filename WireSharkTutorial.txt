@@ -27,3 +27,60 @@ Wireshark Tutorial
    10. https req in hello proceeds with port no. 443
    11. https req goes with TLS
 
+How an SSL connection is established (https://www.ibm.com/docs/en/cics-tg-zos/9.3.0?topic=ssl-how-connection-is-established)
+An SSL connection is established though a handshake (a series of communications exchanges) between the client and the server.
+
+The client sends a request to the server for a secure session. The server responds by sending its X.509 digital certificate to the client.
+The client receives the server's X.509 digital certificate.
+The client authenticates the server, using a list of known certificate authorities.
+The client generates a random symmetric key and encrypts it using server's public key.
+The client and server now both know the symmetric key and can use the SSL encryption process to encrypt and decrypt the information contained in the client request and the server response.
+CICS® Transaction Gateway supports the JSSE implementation of SSL. JSSE as supplied with the Java SDK is the only supported option. For more information, see Security.
+
+Authentication
+During server authentication, a connection is only established if the client trusts the server based on the information presented by the server to the client in its certificate.
+
+During client authentication (if activated) the client sends its certificate information to the server. A connection is then only established if the client trusts the server and the server trusts the client, based on the information exchanged in both certificates.
+
+Transport Layer Security (TLS)
+Network connections between a JEE client and CICS can be secured by the Secure Sockets Layer (SSL) protocol, or the Transport Layer Security (TLS) protocol.
+Encryption
+Cryptography is the scientific discipline for the study and development of ciphers, in particular, encryption and decryption algorithms. These cryptographic procedures are the essential components that enable secure communication to take place across networks that are not secure. SSL encryption uses both symmetric and asymmetric keys.
+Digital signatures, certificates and key rings
+SSL uses digital signatures and digital certificates for establishing a trusted relationship between a sender and a receiver of information sent over a network connection.
+Cipher suites
+A cipher suite is a set of ciphers (encryption algorithms) used for encrypting sensitive information. SSL uses cipher suites to ensure security and integrity of information transmitted over a network connection. Different cipher suites provide different levels of encryption.
+
+
+What is TCP 3-Way Handshake?
+The TCP 3-Way Handshake is a three-step process that is used to make a secured and reliable connection between a client and server before the actual transmission of data. After these three steps and the establishment of the connection between them, data transfer takes place. 
+
+A secured and reliable connection of TCP is only possible due to this 3-way handshake process.
+
+
+TCP 3-Way Handshake Process (https://workat.tech/core-cs/tutorial/tcp-three-way-handshake-in-computer-networks-yoo7331910lh)
+The following steps are involved in establishing a connection using the 3-Way Handshake Process.
+
+1. The client starts the process and sets the SYN flag to 1
+
+The client sends the message to the server by setting the SYN flag to 1.
+The message contains some other information like sequence numbers(2000), maximum segment size, window size.
+A sequence number is a randomly generated 32-bits number.
+SYN - It stands for synchronization. It sends the message to the server to synchronize with the received sequence number.
+The window size is used for the flow control. It denotes the capacity of the data that can be received.
+For example - If the window size is 10000 and the maximum segment size is 1000. Then, the maximum number of data segments that should be transmitted is 10000/1000 = 10.
+2. The server replies with (SYN+ACK)
+
+After receiving the synchronization request from the client, the server sends the acknowledgment to the client by setting the ACK flag to 1.
+It sends the Acknowledgment number (ACK) to the client which is just 1 greater than the received sequence number from the client. For example - If the sequence number received from the client is 2000 then the acknowledgment sent by the server will be 2001.
+It denotes the next sequence expected by the sender.
+In addition to this, the server also sends a randomly generated sequence number (suppose 4000 ) and sets the SYN flag to 1.
+The server also sends its window size which is the buffer capacity of the server and maximum segment size to the client for flow control.
+It is required so that none of the ends need to do the fragmentation of packets.
+3. The final acknowledgment from the client (ACK)
+
+After receiving the SYN from the server, the client sets the ACK flag to 1.
+It sends the expected sequence number (2001) by the server which is equal to the Acknowledgment number received from the server.
+It also sends the Acknowledgment number which is one greater than the sequence number received from the server which denotes the next expected sequence number.
+The above three processes are called the TCP 3-Way Handshake. After these three steps, the connection is established between the two. The data can be transmitted between them after the connection establishment.
+
