@@ -21,7 +21,12 @@ def encryptRailFence(text, key):
         for j in range(len(text)):
             if rail[i][j] != "\n":
                 result.append(rail[i][j])
+    
+    for i in rail:
+        print(i)
+        
     return "".join(result)
+
 
 
 if __name__ == "__main__":

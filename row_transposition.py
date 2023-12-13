@@ -1,3 +1,5 @@
+'''Row Transposition'''
+
 import math
 
 def encrypt_message(msg, key):
@@ -19,22 +21,21 @@ def encrypt_message(msg, key):
             k = k + 1
         arr.append(row)
 
-    # Rearrange columns based on the key
-    sorted_cols = [list(i) for i in zip(*arr)]
-    sorted_cols = [sorted_cols[i] for i in key]
+    # Rearrange rows based on the key
+    sorted_rows = [arr[i] for i in key]
 
-    result_string = ''.join(''.join(row) for row in zip(*sorted_cols))
+    result_string = ''.join(''.join(row) for row in sorted_rows)
 
     for i in arr:
         print(i)
     print('\n')
-    for i in sorted_cols:
+    for i in sorted_rows:
         print(i)
 
     return result_string
 
 # Example usage:
-key = [2, 0, 1, 3]  # Example key for columnar transposition
+key = [2, 0, 1, 3]  # Example key for row transposition
 msg = 'Geeks for Geeks'
 cipher = encrypt_message(msg, key)
 print(cipher)
