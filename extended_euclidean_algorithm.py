@@ -15,3 +15,4 @@ num2 = int(input("Enter the second number: "))
 gcd_result, x, y = extended_euclidean_algorithm(num1, num2)
 print(f"Extended GCD of {num1} and {num2} is: {gcd_result}")
 print(f"Coefficients (x, y) are: ({x}, {y})")
+
